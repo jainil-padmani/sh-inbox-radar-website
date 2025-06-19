@@ -12,7 +12,7 @@ const ResultPage2 = () => {
   const [showSignUpModal, setShowSignUpModal] = React.useState(false);
 
   const handleRunNewTestClick = () => {
-    navigate('/home3');
+    navigate('/home2');
   };
 
   const handleCloseModal = () => {
