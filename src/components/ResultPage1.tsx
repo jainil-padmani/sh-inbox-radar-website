@@ -6,6 +6,7 @@ import IPBlacklistModal from './IPBlacklistModal';
 import SPFSetupModal from './SPFSetupModal';
 import DKIMSetupModal from './DKIMSetupModal';
 import DMARCSetupModal from './DMARCSetupModal';
+import SpamassassinModal from './SpamassassinModal';
 
 const ResultPage1 = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const ResultPage1 = () => {
   const [showSPFModal, setShowSPFModal] = React.useState(false);
   const [showDKIMModal, setShowDKIMModal] = React.useState(false);
   const [showDMARCModal, setShowDMARCModal] = React.useState(false);
+  const [showSpamassassinModal, setShowSpamassassinModal] = React.useState(false);
 
   const handleRunNewTestClick = () => {
     navigate('/home2');
@@ -184,7 +186,7 @@ const ResultPage1 = () => {
                 <span className="text-gray-800 flex-1">DMARC check - We found a record</span>
                 <span className="text-green-600 text-sm flex items-center ml-auto hover:underline focus:outline-none">Details <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></span>
               </div>
-              <div className="flex items-center bg-gray-50 p-4 rounded-lg cursor-pointer hover:bg-gray-100 transition" onClick={() => {}}>
+              <div className="flex items-center bg-gray-50 p-4 rounded-lg cursor-pointer hover:bg-gray-100 transition" onClick={() => setShowSpamassassinModal(true)}>
                 <CheckCircle className="h-6 w-6 text-green-500 mr-3" />
                 <span className="text-gray-800 flex-1">Spamassassin Score Analysis</span>
                 <span className="text-green-600 text-sm flex items-center ml-auto hover:underline focus:outline-none">Details <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></span>
@@ -270,6 +272,7 @@ const ResultPage1 = () => {
       <SPFSetupModal isOpen={showSPFModal} onClose={() => setShowSPFModal(false)} spfRecord="v=spf1 a mx include:spf.sendinblue.com include:helpscoutemail.com include:_spf.google.com ~all" />
       <DKIMSetupModal isOpen={showDKIMModal} onClose={() => setShowDKIMModal(false)} dkimRecord={`v=DKIM1; k=rsa;\np=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCO1au0GCLhoKMaA7RpW+1GQkcYB6TqUfC5OD9dLbkVF6a0+KU2FocEV9f0TW6NShvz5ECZPAYuBqInuTV36g9eazlKhNrENLeeB9oEbWkNSMdIDFSxrW0R/JCuVOjZIPHqjPUxLfyIq3TtsocoTyeJIabPdx5tj/cCeTzsQIDAQAB`} />
       <DMARCSetupModal isOpen={showDMARCModal} onClose={() => setShowDMARCModal(false)} dmarcRecord="v=DMARC1; p=none; sp=none; rua=mailto:dmarc@mailinblue.com!10m; ruf=mailto:dmarc@mailinblue.com!10m; rf=afrf; pct=100; ri=86400" />
+      <SpamassassinModal isOpen={showSpamassassinModal} onClose={() => setShowSpamassassinModal(false)} />
     </section>
   );
 };
